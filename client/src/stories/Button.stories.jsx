@@ -1,8 +1,7 @@
 import React from 'react';
-
-import { Button } from '../ui';
+import { Button } from '../ui/atoms/Button';
 import { Grid, Typography } from '@mui/material';
-
+/* eslint-disable */
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Zadanie 1/Button',
@@ -60,6 +59,23 @@ const All = () => (
     </Grid>
     <Grid container sx={{ mt: 5 }}>
       <Grid item xs={12} sx={{ mb: 2 }}>
+        <Typography variant={'subheading'}>Contained Outlined</Typography>
+      </Grid>
+      <Button disabled color={'primary'} variant={'contained'}>
+        Button
+      </Button>
+      <Button disabled variant={'contained'} color={'error'}>
+        Button
+      </Button>
+      <Button disabled variant={'contained'} color={'success'}>
+        Button
+      </Button>
+      <Button disabled variant={'contained'} color={'warning'}>
+        Button
+      </Button>
+    </Grid>
+    <Grid container sx={{ mt: 5 }}>
+      <Grid item xs={12} sx={{ mb: 2 }}>
         <Typography variant={'subheading'}>Outlined</Typography>
       </Grid>
       <Button variant={'outlined'} color={'primary'}>
@@ -72,6 +88,23 @@ const All = () => (
         Button
       </Button>
       <Button variant={'outlined'} color={'warning'}>
+        Button
+      </Button>
+    </Grid>
+    <Grid container sx={{ mt: 5 }}>
+      <Grid item xs={12} sx={{ mb: 2 }}>
+        <Typography variant={'subheading'}>Outlined Disabled</Typography>
+      </Grid>
+      <Button disabled variant={'outlined'} color={'primary'}>
+        Button
+      </Button>
+      <Button disabled variant={'outlined'} color={'error'}>
+        Button
+      </Button>
+      <Button disabled variant={'outlined'} color={'success'}>
+        Button
+      </Button>
+      <Button disabled variant={'outlined'} color={'warning'}>
         Button
       </Button>
     </Grid>

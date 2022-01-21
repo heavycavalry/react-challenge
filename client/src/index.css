@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
 body {
+  box-sizing: border-box;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
