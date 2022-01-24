@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '../ui/atoms/Button';
 import { Grid, Typography } from '@mui/material';
+import { IconAdd, IconArrow } from 'ui/atoms/button.styled';
 /* eslint-disable */
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -107,6 +108,27 @@ const All = () => (
       <Button disabled variant={'outlined'} color={'warning'}>
         Button
       </Button>
+      <Grid container sx={{ mt: 5 }}>
+        <Grid item xs={12} sx={{ mb: 2 }}>
+          <Typography variant={'subheading'}>Icons</Typography>
+        </Grid>
+        <Button endIcon={<IconArrow />} variant={'outlined'} color={'primary'}>
+          Dalej
+        </Button>
+        <Button startIcon={<IconAdd />} variant={'contained'} color={'error'}>
+          Dodaj
+        </Button>
+        <Button
+          endIcon={<IconArrow />}
+          variant={'outlined'}
+          color={'success'}
+        ></Button>
+        <Button
+          startIcon={<IconArrow />}
+          variant={'outlined'}
+          color={'primary'}
+        ></Button>
+      </Grid>
     </Grid>
   </>
 );

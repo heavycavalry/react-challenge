@@ -30,15 +30,19 @@ const error = {
   secondary: '#FDE8E0',
 };
 
+function propDependentSize(size) {
+  return (props) => (props.text ? 'unset' : size);
+}
+
 export const BaseButton = styled(MuiButton)`
   font-weight: 500;
   border: none;
   && {
     padding: '8px 12px';
-    max-width: ${(props) => (props.text ? 'unset' : '34px')};
-    max-height: ${(props) => (props.text ? 'unset' : '34px')};
-    min-height: ${(props) => (props.text ? 'unset' : '34px')};
-    min-width: ${(props) => (props.text ? 'unset' : '34px')};
+    max-width: ${propDependentSize('34px')};
+    max-height: ${propDependentSize('34px')};
+    min-height: ${propDependentSize('34px')};
+    min-width: ${propDependentSize('34px')};
     font-size: 15px;
     font-family: 'Inter', sans-serif;
     text-transform: capitalize;
@@ -140,12 +144,12 @@ export const ErrorButton = styled(BaseButton)`
   }
 `;
 
-export const StyledAddIcon = styled(AddRounded)`
+export const IconAdd = styled(AddRounded)`
   color: '#E8EAF6';
   font-size: 1.04rem !important;
 `;
 
-export const StyledArrowIcon = styled(ArrowForwardIosRounded)`
+export const IconArrow = styled(ArrowForwardIosRounded)`
   color: '#E8EAF6';
   font-size: 0.62rem !important;
 `;
