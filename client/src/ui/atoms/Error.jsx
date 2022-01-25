@@ -15,7 +15,10 @@ export const Error = ({ error }) => {
         <Typography>Uruchom Server!</Typography>
       ) : (
         <>
-          <img src={Image} alt="" />
+          <img
+            src={Image}
+            alt="grafika przedstawiająca dwie osoby w kombinezonach kosmicznych unoszące się między planetami"
+          />
           <Text>Wystąpił nieoczekiwany błąd</Text>
         </>
       )}

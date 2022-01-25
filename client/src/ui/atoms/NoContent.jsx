@@ -11,7 +11,10 @@ export const NoContent = () => {
         flexDirection: 'column',
       }}
     >
-      <img src={Image} alt="" />
+      <img
+        src={Image}
+        alt="grafika przedstawiająca dokument, kalkulator, banknot i trzy monety"
+      />
       <Text>Brak danych do wyświetlenia</Text>
     </Box>
   );

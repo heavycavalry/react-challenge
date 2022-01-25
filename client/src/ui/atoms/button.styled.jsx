@@ -3,6 +3,7 @@ import { Button as MuiButton } from '@mui/material';
 import '../../index.css';
 import { ArrowForwardIosRounded } from '@mui/icons-material';
 import { AddRounded } from '@mui/icons-material';
+
 // COLORS
 const disabled = {
   primary: 'rgba(51, 51, 51, 0.25)',
@@ -145,11 +146,9 @@ export const ErrorButton = styled(BaseButton)`
 `;
 
 export const IconAdd = styled(AddRounded)`
-  color: '#E8EAF6';
   font-size: 1.04rem !important;
 `;
 
 export const IconArrow = styled(ArrowForwardIosRounded)`
-  color: '#E8EAF6';
   font-size: 0.62rem !important;
 `;
