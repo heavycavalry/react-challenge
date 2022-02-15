@@ -1,4 +1,4 @@
-import { Card as MuiCard, CardHeader } from '@mui/material';
+import { Card as MuiCard} from '@mui/material';
 import {Button} from "./Button";
 import {IconAdd} from "./button.styled";
 import React from "react";
@@ -7,7 +7,7 @@ import {ActionHeader} from "./ActionHeader";
 export const Card = ({ title, subheader, children, ...props }) => {
   return (
     <MuiCard
-        sx={{position: "relative"}}
+        sx={{height: '80vh'}}
         variant="outlined" {...props}>
       <ActionHeader
         title={title}

@@ -1,28 +1,13 @@
 import React from 'react';
-import {ActionHeader, Card, ColorBox, Error, Loader, LocalizedDate, Money, Page, Table} from 'ui';
+import {ActionHeader, Card, ColorBox, Error, Loader, LocalizedDate, Money, NoContent, Page, Table} from 'ui';
 import {Box, Grid} from '@mui/material';
 import {QueryClient, QueryClientProvider, useQuery} from 'react-query'
 import {BudgetService} from "../api";
 
-const row = {
-    "createdAt": 1641037200000,
-    "categoryId": "8",
-    "amountInCents": 10000,
-    "id": "7",
-    "currentSpending": 11799,
-    "currentSpendingPercent": 117,
-    "category": {
-        "id": "8",
-        "name": "Różne",
-        "color": "#93ab8e",
-        "budgetId": "7",
-        "ledgerIds": [
-            "15",
-            "16"
-        ],
-        "createdAt": 1643713800000
-    }
-}
+const getUniqueId = (row) => {
+    return row.id
+};
+
 const queryClient = new QueryClient();
 const NameCell = {
     label: "Nazwa",
@@ -71,8 +56,6 @@ const DateCell = {
 }
 
 
-const getUniqueId = () => row.id;
-
 export const BudgetPage = () => {
     return (
         <Page title="Budżet">
@@ -85,13 +68,18 @@ export const BudgetPage = () => {
                     />
                 }
             >
-                <Grid container>
-                    <Grid item xs={12}>
-                        <QueryClientProvider client={queryClient}>
+                <QueryClientProvider client={queryClient}>
+                    <Grid container>
+                        <Grid item xs={12}
+                              container
+                              direction="column"
+                              justifyContent="center"
+                              alignItems="center"
+                              minHeight={'40vh'}>
                             <TableProvider/>
-                        </QueryClientProvider>
+                        </Grid>
                     </Grid>
-                </Grid>
+                </QueryClientProvider>
             </Card>
         </Page>
     );
@@ -100,11 +88,13 @@ export const BudgetPage = () => {
 
 export const TableProvider = () => {
     const {isLoading, error, data} = useQuery('repoData', () => {
-        return  BudgetService.findAll()
+        return BudgetService.findAll()
     })
+    if (data.isEmpty) return <NoContent/>
     if (isLoading) return <Loader/>
 
     if (error) return <Error/>
 
-    return <Table headCells={[NameCell, ExpensesCell, CurrentSpendingCell, StatusCell, DateCell]} rows={data} getUniqueId={getUniqueId} deleteRecords={[]}/>;
+    return <Table headCells={[NameCell, ExpensesCell, CurrentSpendingCell, StatusCell, DateCell]} rows={data}
+                  getUniqueId={getUniqueId} deleteRecords={[]}/>
 }
