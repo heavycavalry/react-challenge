@@ -46,10 +46,10 @@ export const BaseButton = styled(MuiButton)`
     min-width: ${propDependentSize('34px')};
     font-size: 15px;
     font-family: 'Inter', sans-serif;
-    text-transform: capitalize;
     line-height: 22px;
     box-shadow: none;
     font-style: normal;
+    text-transform: unset;
     span {
       margin: ${(props) => (props.text ? true : '0')};
     }
@@ -60,14 +60,15 @@ export const BaseButton = styled(MuiButton)`
     &:disabled {
       color: ${disabled.primary};
       background-color: ${(props) =>
-        (props.variant === 'outlined') & (props.color !== 'primary')
+        (props.variant === 'outlined') && (props.color !== 'primary')
           ? 'none'
           : disabled.primaryLight};
       border: ${(props) =>
-        (props.variant === 'outlined') & (props.color !== 'primary')
+        (props.variant === 'outlined') && (props.color !== 'primary')
           ? `1px solid ${disabled.primaryLight}`
           : 'none'};
     }
+
   }
 `;
 export const PrimaryButton = styled(BaseButton)`

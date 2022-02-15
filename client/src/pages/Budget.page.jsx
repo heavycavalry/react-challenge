@@ -1,8 +1,6 @@
 import React from 'react';
-import {ActionHeader, Button, Card, Page, Table} from 'ui';
-import {Grid} from '@mui/material';
-import styled from 'styled-components'
-import {IconAdd} from "../ui/atoms/button.styled";
+import {ActionHeader, Card, ColorBox, Page, Table} from 'ui';
+import {Box, Grid} from '@mui/material';
 const row =  {
     "createdAt": 1641037200000,
     "categoryId": "8",
@@ -41,7 +39,11 @@ const NameCells = {
     label: "Nazwa",
     renderCell(row) {
         const category = row["category"];
-        return <IconBox color={category.color}>{category.name}</IconBox>;
+        return (
+            <Box sx={{ display: 'flex' }}>
+                <ColorBox color={category.color}/>
+                <p>{category.name}</p>
+            </Box>)
     }
 }
 
@@ -49,24 +51,13 @@ const ExpensesCells = {
     label: "Planowane wydatki",
     renderCell(row) {
         const category = row["category"];
-        return <IconBox color={category.color}>{category.name}</IconBox>;
+        return null;
     }
 }
 
 
 
 const getUniqueId = () => row.id;
-const IconBox = styled.div`
-&:before {
-  content: "";
-  display: block;
-  float: left;
-  margin-right: 10px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${props => props.color};
-}`;
 
 export const BudgetPage = () => {
   return (
@@ -86,7 +77,6 @@ export const BudgetPage = () => {
           </Grid>
         </Grid>
       </Card>
-        <Button variant={"contained"} color={"primary"} startIcon={<IconAdd/>} label={"Zdefiniuj budżet"}/>
     </Page>
   );
 };
