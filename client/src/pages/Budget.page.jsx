@@ -108,7 +108,7 @@ export const TableProvider = () => {
 
     if (isLoading) return <Loader/>
     if (error) return <Error/>
-    if (!data || data.isEmpty) return <NoContent/>
+    if (!data || data.length === 0) return <NoContent/>
 
     return (
         <Table headCells={[NameCell, ExpensesCell, CurrentSpendingCell, StatusCell, DateCell]} rows={data}
