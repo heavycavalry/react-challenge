@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ActionHeader, Button, Card, ColorBox, LocalizedDate, Money } from 'ui';
 import { IconAdd } from 'ui/atoms/button.styled';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { Box } from '@mui/material';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { TableProvider } from 'pages/Budget.page';
-import { LedgerService } from 'api';
+import { TableProvider } from './Budget.widget';
+import { LedgerService } from '../../api';
 import { Grid } from '@mui/material';
+import { AddNewLedgerRecord } from './AddNewLedgerRecord.modal';
 const queryClient = new QueryClient();
 
 const categoryCell = {
@@ -14,14 +15,14 @@ const categoryCell = {
   renderCell({ category, mode }) {
     if (mode === 'INCOME') {
       return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <ColorBox color={category.color} />
-          <p>Wpływ</p>
+          <p>{category.name}</p>
         </Box>
       );
     } else {
       return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <ColorBox color={category.color} />
           <p>{category.name}</p>
         </Box>
@@ -49,14 +50,14 @@ const amountCell = {
   renderCell({ amountInCents, mode }) {
     if (mode === 'INCOME') {
       return (
-        <Box sx={{ color: 'green', display: 'flex' }}>
+        <Box sx={{ color: '#00A980', display: 'flex' }}>
           <span>+</span>
           <Money inCents={amountInCents} />
         </Box>
       );
     } else {
       return (
-        <Box sx={{ color: 'red', display: 'flex' }}>
+        <Box sx={{ color: '#FF5D5D', display: 'flex' }}>
           <span>-</span>
           <Money inCents={amountInCents} />
         </Box>
@@ -66,7 +67,9 @@ const amountCell = {
 };
 
 const headCells = [nameCell, categoryCell, dateCell, amountCell];
+
 export const LedgerWidget = () => {
+  const [type, setType] = useState('');
   return (
     <Card
       sx={{ position: 'relative' }}
@@ -81,6 +84,9 @@ export const LedgerWidget = () => {
                 variant="outlined"
                 color="primary"
                 startIcon={<IconAdd />}
+                onClick={() => {
+                  setType('INCOME');
+                }}
               >
                 Wpłać
               </Button>
@@ -88,6 +94,9 @@ export const LedgerWidget = () => {
                 variant="outlined"
                 color="primary"
                 startIcon={<RemoveIcon />}
+                onClick={() => {
+                  setType('EXPENSE');
+                }}
               >
                 Wypłać
               </Button>
@@ -96,6 +105,7 @@ export const LedgerWidget = () => {
         />
       }
     >
+      <AddNewLedgerRecord type={type} />
       <Grid
         item
         xs={12}
@@ -106,7 +116,11 @@ export const LedgerWidget = () => {
         minHeight={'40vh'}
       >
         <QueryClientProvider client={queryClient}>
-          <TableProvider service={LedgerService} cells={headCells} />
+          <TableProvider
+            service={LedgerService}
+            cells={headCells}
+            queryClient={queryClient}
+          />
         </QueryClientProvider>
       </Grid>
     </Card>
