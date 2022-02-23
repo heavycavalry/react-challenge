@@ -2,24 +2,12 @@ import React, { useState } from 'react';
 import { ActionHeader, Card } from '../../ui';
 import { Box, Grid } from '@mui/material';
 import { BudgetService } from '../../api';
-import {
-  QueryClient,
-  QueryClientProvider,
-  useMutation,
-  useQuery,
-} from 'react-query';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { Button } from '../atoms/Button';
 import { IconAdd } from '../atoms/button.styled';
-import {
-  ColorBox,
-  Error,
-  Loader,
-  LocalizedDate,
-  Money,
-  NoContent,
-  Table,
-} from 'ui';
+import { ColorBox, LocalizedDate, Money } from 'ui';
 import { AddNewBudgetRecord } from './AddNewBudgetRecord.modal';
+import { TableProvider } from 'ui/molecules/table/TableProvider';
 
 const queryClient = new QueryClient();
 
@@ -122,43 +110,5 @@ export const BudgetWidget = () => {
         </Grid>
       </Grid>
     </Card>
-  );
-};
-
-export const TableProvider = ({ service, cells, queryClient }) => {
-  const { isLoading, error, data } = useQuery('rowData', () => {
-    return service.findAll();
-  });
-  const deleteMutation = useMutation(
-    (records) => {
-      return service.remove({ ids: records });
-    },
-    {
-      onSuccess: () => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries('rowData');
-      },
-    },
-  );
-
-  const getUniqueId = (row) => {
-    return row.id;
-  };
-
-  const deleteRecords = (records) => {
-    deleteMutation.mutate(records);
-  };
-
-  if (isLoading) return <Loader />;
-  if (error) return <Error />;
-  if (!data || data.length === 0) return <NoContent />;
-
-  return (
-    <Table
-      headCells={cells}
-      rows={data}
-      getUniqueId={getUniqueId}
-      deleteRecords={deleteRecords}
-    />
   );
 };

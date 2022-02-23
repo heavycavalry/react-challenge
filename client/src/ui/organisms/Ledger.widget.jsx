@@ -4,7 +4,7 @@ import { IconAdd } from 'ui/atoms/button.styled';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { Box } from '@mui/material';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { TableProvider } from './Budget.widget';
+import { TableProvider } from 'ui/molecules/table/TableProvider';
 import { LedgerService } from '../../api';
 import { Grid } from '@mui/material';
 import { AddNewLedgerRecord } from './AddNewLedgerRecord.modal';
