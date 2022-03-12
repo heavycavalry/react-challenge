@@ -6,8 +6,7 @@ import {CardHeader, CardContent} from '@mui/material';
 import {CardActions as MuiCardActions} from '@mui/material';
 import styled from 'styled-components';
 
-export const Modal = ({title, children, description, isOpen, setIsOpen}) => {
-
+export const Modal = ({title, children, description, isOpen, setIsOpen, onSubmit}) => {
     const handleClose = () => {
         setIsOpen(false);
     };
@@ -28,7 +27,7 @@ export const Modal = ({title, children, description, isOpen, setIsOpen}) => {
                     <Button variant="outlined" color="primary" onClick={handleClose}>
                         Anuluj
                     </Button>
-                    <Button variant="contained" color="primary">
+                    <Button onClick={onSubmit} variant="contained" color="primary">
                         Zapisz
                     </Button>
                 </MuiCardActions>

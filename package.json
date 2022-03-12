@@ -8,7 +8,8 @@
   "dependencies": {
     "axios": "^0.24.0",
     "cypress": "^9.1.0",
-    "prettier": "2.5.1"
+    "prettier": "2.5.1",
+    "react-hook-form": "^7.27.1"
   },
   "scripts": {
     "postinstall": "run-p -l install:server install:client",
