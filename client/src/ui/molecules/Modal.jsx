@@ -1,39 +1,48 @@
 import React from 'react';
-import {Modal as MuiModal} from '@mui/material';
-import {Card} from '@mui/material';
-import {Button} from 'ui';
-import {CardHeader, CardContent} from '@mui/material';
-import {CardActions as MuiCardActions} from '@mui/material';
+import { Modal as MuiModal } from '@mui/material';
+import { Card } from '@mui/material';
+import { Button } from 'ui';
+import { CardHeader, CardContent } from '@mui/material';
+import { CardActions as MuiCardActions } from '@mui/material';
 import styled from 'styled-components';
 
-export const Modal = ({title, children, description, isOpen, setIsOpen, onSubmit}) => {
-    const handleClose = () => {
-        setIsOpen(false);
-    };
-    return isOpen ? (
-        <StyledModal
-            outline={0}
-            BackdropComponent={Backdrop}
-            open={isOpen}
-            onClose={handleClose}
-            aria-labelledby="parent-modal-title"
-            aria-describedby="parent-modal-description"
-        >
-            <Card sx={{width: 450}} variant="outlined">
-                <CardHeader title={title}/>
-                <h4>{description}</h4>
-                <CardContent sx={{minHeight: 20}} children={children}/>
-                <MuiCardActions sx={{float: 'right'}}>
-                    <Button variant="outlined" color="primary" onClick={handleClose}>
-                        Anuluj
-                    </Button>
-                    <Button onClick={onSubmit} variant="contained" color="primary">
-                        Zapisz
-                    </Button>
-                </MuiCardActions>
-            </Card>
-        </StyledModal>
-    ) : "";
+export const Modal = ({
+  title,
+  children,
+  description,
+  isOpen,
+  setIsOpen,
+  onSubmit,
+}) => {
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+  return isOpen ? (
+    <StyledModal
+      outline={0}
+      BackdropComponent={Backdrop}
+      open={isOpen}
+      onClose={handleClose}
+      aria-labelledby="parent-modal-title"
+      aria-describedby="parent-modal-description"
+    >
+      <Card sx={{ width: 450 }} variant="outlined">
+        <CardHeader title={title} />
+        <h4>{description}</h4>
+        <CardContent sx={{ minHeight: 20 }} children={children} />
+        <MuiCardActions sx={{ float: 'right' }}>
+          <Button variant="outlined" color="primary" onClick={handleClose}>
+            Anuluj
+          </Button>
+          <Button onClick={onSubmit} variant="contained" color="primary">
+            Zapisz
+          </Button>
+        </MuiCardActions>
+      </Card>
+    </StyledModal>
+  ) : (
+    ''
+  );
 };
 
 const StyledModal = styled(MuiModal)`
